@@ -65,6 +65,7 @@ st.dataframe(grouped_df)
 col1, col2 = st.columns([1, 1])
 ## ---create bargraph of average pageviews and total pageviews sum---
 with col1:
+    st.write("Feminist Pageviews by Wave")
     st.bar_chart(
     grouped_df,
     x='Wave',
@@ -75,6 +76,7 @@ with col1:
 
 ## ---create bargraph of wave count---
 with col2:
+    st.write("Number of Feminist Articles by Wave")
     st.bar_chart(
     grouped_df,
     x='Wave',
@@ -83,9 +85,12 @@ with col2:
     horizontal=False # Set to True for a horizontal orientation
     )
 
-## ---create piechart of average pageviews (out of total feminist pageviews)---
+st.write('''From the above visualizations, we can see that second-wave feminism has the highest average pageviews and total pageviews sum, 
+         as well as the highest number of feminists. First-wave feminism has the lowest average pageviews and total pageviews sum, as
+         well as the fewest number of feminists and their related articles. The above linegraph further supports this observation,
+         as the highest viewed feminists were born around 1950, which would align with them contributing to the second wave of feminism.''')
 
-selected_wave = st.multiselect('Wave', ['First-wave','Second-wave','Third_wave'])
+selected_wave = st.multiselect('Select a wave to get started - ', ['First-wave','Second-wave','Third_wave'])
 # average pageviews based on wave of feminism over the 7-day period
 
 ## ---create data---
@@ -112,3 +117,8 @@ fig = px.line(
 st.plotly_chart(fig, use_container_width=True)
 
 st.dataframe(grouped_2_df)
+
+st.write('''The line plot above contradicts some previous findings, as the line plot shows that first-wave feminists are the most viewed on
+         average over the seven day testing period, whereas second-wave feminists had the highest total pageviews in the previous bar chart.
+         Therefore, the wave that a feminist is associated with may impact their popularity on Wikipedia, especially if they are a member of the second wave
+         of feminism.''')

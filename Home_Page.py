@@ -2,6 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Multi-Page App Demo")
 st.title("Welcome to the Home Page")
+st.write("Created by Ellen Schmidt '28, 2025 CS234 Final Project")
 
 st.header("1. Introduction")
 st.write('''Across the world, women have worked tirelessly for thousands of years to fight for the same rights that are unfairly 

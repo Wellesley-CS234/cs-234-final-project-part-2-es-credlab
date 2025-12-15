@@ -72,12 +72,14 @@ fig = px.bar(bar_chart_df,
 
 st.write('Number of Labels in Each Category Assigned by Me and Predicted by Bayes Model')
 st.plotly_chart(fig, use_container_width=True)
+st.write('''The chart above shows that there are more feminists both assigned and predicted to be in category two, compared to the other categories.
+         The chart above also tells us that the Naive Bayes model predicts more feminists to be in categories 1 and 3, and less feminists in category 2, than in actuality.''')
 
 ## ---generating confusion matrix---
 st.header("Naive Bayes Accuracy")
 
 accuracy = accuracy_score(hand_classified_predictions["assigned_label"], hand_classified_predictions["predicted_label"])
-st.write(f"The following is a confusion matrix showing the labels assigned by me (True Labels) and assigned by the Bayes model (Predicted Labels). Model Accuracy : {str(round(accuracy,3)*100)}+'%")
+st.write(f"The following is a confusion matrix showing the labels assigned by me (True Labels) and assigned by the Bayes model (Predicted Labels). Model Accuracy : {str(round(accuracy,3)*100)}%")
 
 cm = confusion_matrix(hand_classified_predictions["assigned_label"], hand_classified_predictions["predicted_label"])
 
@@ -107,6 +109,10 @@ merged.sort_values('date_object',inplace=True)
 
 grouped_again_means = merged.groupby(['date_object','universal_label'])['pageviews'].mean()
 final_merged_means = grouped_again_means.reset_index()
+
+st.write('''We can see from the model's accuracy that it is resonably accurate at 78.2%. According to the confusion matrix, the model 
+         confuses categories 1 and 3 the most. This suggests that the language describing feminists in category 1 may be more similar to the language
+         used to describe feminists in category 3.''')
 
 st.header("Text Classification Results")
 
@@ -138,3 +144,11 @@ else:
         )
 
     st.plotly_chart(fig, use_container_width=True)
+
+st.write('''From the line plot above, we can see that feminists assigned to category 1 tend to have higher total pageviews compared to feminists in categories 2 and 3.
+             This makes sense, as there are the most amount of feminists present in category 1, and from previous analysis, we know that writers (which are usually assigned to category 1)
+             is one of the more popular occupations among feminists on Wikipedia. On the other hand, feminists in category two have the highest average pageviuews for most days across the seven day 
+             period. This suggests that feminists in category 2 are more popular on average compared to feminists in categories 1 and 3, especially since the average number of pageviews is a more
+         reliable metric for popularity since it accounts for the number of feminists in each category.''')
+st.write('''This suggests that feminists who are in category 2 (organizers, politicians, public figures) may be more popular on Wikipedia compared to feminists who are scholars, artists, or authors, and that
+         these categories may influence the popularity of a feminist.''')

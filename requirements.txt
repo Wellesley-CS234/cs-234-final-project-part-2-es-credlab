@@ -4,3 +4,4 @@ plotly
 matplotlib
 seaborn
 sklearn
+sklearn.metrics

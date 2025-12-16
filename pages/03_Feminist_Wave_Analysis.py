@@ -118,7 +118,5 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.dataframe(grouped_2_df)
 
-st.write('''The line plot above contradicts some previous findings, as the line plot shows that first-wave feminists are the most viewed on
-         average over the seven day testing period, whereas second-wave feminists had the highest total pageviews in the previous bar chart.
-         Therefore, the wave that a feminist is associated with may impact their popularity on Wikipedia, especially if they are a member of the second wave
-         of feminism.''')
+st.write('''From line plot above we can see that the wave that a feminist is associated with may impact their popularity on Wikipedia, especially if they are a member of the second or third waves
+         of feminism. We can also see that the trends of feminist pageviews tend to follow a semi-universal pattern, regardless of the specified wave.''')

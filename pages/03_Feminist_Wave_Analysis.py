@@ -90,7 +90,7 @@ st.write('''From the above visualizations, we can see that second-wave feminism 
          well as the fewest number of feminists and their related articles. The above linegraph further supports this observation,
          as the highest viewed feminists were born around 1950, which would align with them contributing to the second wave of feminism.''')
 
-selected_wave = st.multiselect('Select a wave to get started - ', ['First-wave','Second-wave','Third_wave'])
+selected_wave = st.multiselect('Select a wave to get started - ', ['Second-wave','Third_wave'])
 # average pageviews based on wave of feminism over the 7-day period
 
 ## ---create data---

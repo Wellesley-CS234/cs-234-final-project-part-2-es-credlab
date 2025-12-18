@@ -44,6 +44,9 @@ if selected_analysis == 'Number of Feminists':
     origin_information_df.sort_values("Count",ascending=False,inplace=True)
     dataframe = origin_information_df
 
+    st.write(origin_information_df['Country'].unique)
+    st.dataframe(origin_information_df)
+    
 else:
     ## ---prepare data for analysis---
     target_qids = list_of_feminists.q_id

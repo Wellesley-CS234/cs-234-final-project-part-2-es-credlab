@@ -16,7 +16,7 @@ This page is brokwn down into three sections - \n
 ROOT = Path(__file__).resolve().parents[1]
 JSON_PATH = ROOT / "data" / "entity_results.jsonl"
 
-info_df = pd.read_json(JSON_PATH,lines=True)
+info_df = pd.read_json(JSON_PATH,lines=True,dtype=False)
 
 attributes_df = pd.json_normalize(info_df['attributes'])
 info_df = info_df.join(attributes_df)

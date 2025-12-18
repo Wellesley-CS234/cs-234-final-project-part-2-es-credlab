@@ -36,7 +36,7 @@ if selected_analysis == 'Number of Feminists':
                         locations="Country", 
                         locationmode='country names', 
                         color="Count",
-                        color_continuous_scale="Viridis_r",
+                        color_continuous_scale="Viridis",
                         range_color=[origin_information_df["Count"].min(), origin_information_df["Count"].max()],
                         width=1000,
                         height=600)

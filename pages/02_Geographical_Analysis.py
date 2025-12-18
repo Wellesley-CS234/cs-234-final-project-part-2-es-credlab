@@ -36,7 +36,7 @@ if selected_analysis == 'Number of Feminists':
                         locations="Country", 
                         locationmode='country names', 
                         color="Count",
-                        color_continuous_scale="Magma",
+                        color_continuous_scale="Viridis",
                         width=1000,
                         height=600)
     origin_information_df.sort_values("Count",ascending=False,inplace=True)
@@ -60,7 +60,7 @@ else:
                         locations="Country", 
                         locationmode='country names', 
                         color="Rounded Total Article Pageviews",
-                        color_continuous_scale="Magma",
+                        color_continuous_scale="Viridis",
                         width=1000,
                         height=600)
         pageview_df.sort_values("Rounded Total Article Pageviews",ascending=False,inplace=True)
@@ -75,7 +75,7 @@ else:
                         locations="Country", 
                         locationmode='country names', 
                         color="Rounded Average Article Pageviews",
-                        color_continuous_scale="Magma",
+                        color_continuous_scale="Viridis",
                         width=1000,
                         height=600)
         average_pageviews_df.sort_values("Rounded Average Article Pageviews",ascending=False,inplace=True)

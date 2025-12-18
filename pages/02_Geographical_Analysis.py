@@ -41,6 +41,11 @@ if selected_analysis == 'Number of Feminists':
                         height=600)
     origin_information_df.sort_values("Count",ascending=False,inplace=True)
     dataframe = origin_information_df
+    
+    st.write(origin_information_df["Count"].dtype)
+    origin_information_df["Count"] = pd.to_numeric(origin_information_df["Count"], errors="coerce")
+    st.write(origin_information_df["Count"].dtype)
+
 else:
     ## ---prepare data for analysis---
     target_qids = list_of_feminists.q_id

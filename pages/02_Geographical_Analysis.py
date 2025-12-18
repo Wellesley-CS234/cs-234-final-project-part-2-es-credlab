@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+from pathlib import Path
 
 st.set_page_config(layout="wide")
 
@@ -13,7 +14,12 @@ st.write('''This page is dedicated to a geographical analysis of the feminists l
 st.write('''** The dataframe below also shows the top country depending on the selected category.''')
 
 # ---prepare universal data---
-list_of_feminists = pd.read_csv("data/list_of_feminists.csv")
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_PATH = BASE_DIR / "data" / "list_of_feminists.csv"
+
+list_of_feminists = pd.read_csv(DATA_PATH)
+
 pageview_data = pd.read_csv("data/cleaned_pageview_data.csv")
 
 # ---create universal widget---

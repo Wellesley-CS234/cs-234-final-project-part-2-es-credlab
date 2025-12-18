@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+from pathlib import Path
 
 st.set_page_config(layout="wide")
 
@@ -12,13 +13,20 @@ This page is brokwn down into three sections - \n
 \t3. Feminist Frequency and Popularity by Occupation''')
 
 # ---prepare universal data---
-info_df = pd.read_json("data\entity_results.jsonl",lines=True)
+ROOT = Path(__file__).resolve().parents[1]
+JSON_PATH = ROOT / "data" / "entity_results.jsonl"
+
+info_df = pd.read_json(JSON_PATH,lines=True)
 
 attributes_df = pd.json_normalize(info_df['attributes'])
 info_df = info_df.join(attributes_df)
 
-list_of_feminists = pd.read_csv("data\list_of_feminists.csv")
-pageview_data = pd.read_csv("data\cleaned_pageview_data.csv")
+ROOT = Path(__file__).resolve().parents[1]
+CSV_PATH = ROOT / "data" / "list_of_feminists.csv"
+
+list_of_feminists = pd.read_csv(CSV_PATH)
+
+pageview_data = pd.read_csv("data/cleaned_pageview_data.csv")
 
 # descriptive statistics for pageviews
 st.header('Pageview Descriptive Statistics')

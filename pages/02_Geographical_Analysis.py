@@ -14,8 +14,6 @@ st.write('''This page is dedicated to a geographical analysis of the feminists l
 st.write('''** The dataframe below also shows the top country depending on the selected category.''')
 
 # ---prepare universal data---
-st.write("CSV exists:", (Path(__file__).resolve().parents[1] / "data" / "list_of_feminists.csv").exists())
-
 ROOT = Path(__file__).resolve().parents[1]
 CSV_PATH = ROOT / "data" / "list_of_feminists.csv"
 

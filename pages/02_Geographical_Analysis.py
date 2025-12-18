@@ -84,7 +84,7 @@ else:
 st.plotly_chart(fig)
 
 st.write(f'''Top 10 Countries for '{selected_analysis}' ''')
-st.dataframe(dataframe)
+st.dataframe(dataframe.head(10))
 
 st.write('''We can see from the above analysis that the most amount of feminists listed on Wikipedia come from the United States,
          and many of the feminists are also from the West. This trend continiues with the Total Article pageviews,

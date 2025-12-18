@@ -83,9 +83,7 @@ else:
                         height=600)
         pageview_df.sort_values("Rounded Total Article Pageviews",ascending=False,inplace=True)
         dataframe = pageview_df
-    else:
-        st.dataframe()
-        
+    else:        
         grouped_again = pageview_df.groupby("Country")['Total Article Pageviews'].mean()
         average_pageviews_df = grouped_again.reset_index()
         average_pageviews_df.columns = ['Country','Average Article Pageviews']

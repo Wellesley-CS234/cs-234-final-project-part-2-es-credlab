@@ -65,12 +65,13 @@ else:
     pageview_df = pd.merge(list_of_feminists[["Country","q_id"]], target_information_df, on='q_id', how='inner')
     pageview_df.sort_values('Total Article Pageviews',ascending=False,inplace=True)
     pageview_df['Rounded Total Article Pageviews'] = pageview_df['Total Article Pageviews'].apply(lambda x: round(x))
-    pageview_df["Country"] = pageview_df["Country"].str.strip()
-
-    pageview_df["iso_alpha"] = pageview_df["Country"].apply(name_to_iso3)
     
     ## ---prepare chloropleth for pageviews visualization---
     if selected_analysis == 'Total Article Pageviews':
+        
+        pageview_df["Country"] = pageview_df["Country"].str.strip()
+        pageview_df["iso_alpha"] = pageview_df["Country"].apply(name_to_iso3)
+
         fig = px.choropleth(pageview_df, 
                         locations="iso_alpha", 
                         # locationmode='country names', 
@@ -81,11 +82,16 @@ else:
         pageview_df.sort_values("Rounded Total Article Pageviews",ascending=False,inplace=True)
         dataframe = pageview_df
     else:
+        st.dataframe()
+        
         grouped_again = pageview_df.groupby("Country")['Total Article Pageviews'].mean()
         average_pageviews_df = grouped_again.reset_index()
         average_pageviews_df.columns = ['Country','Average Article Pageviews']
         average_pageviews_df['Rounded Average Article Pageviews'] = average_pageviews_df['Average Article Pageviews'].apply(lambda x: round(x))
-
+        
+        average_pageviews_df["Country"] = average_pageviews_df["Country"].str.strip()
+        average_pageviews_df["iso_alpha"] = average_pageviews_df["Country"].apply(name_to_iso3)
+        
         fig = px.choropleth(average_pageviews_df, 
                         locations="iso_alpha", 
                         # locationmode='country names', 

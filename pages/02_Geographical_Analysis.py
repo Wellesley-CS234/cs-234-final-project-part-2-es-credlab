@@ -69,20 +69,23 @@ else:
     
     ## ---prepare chloropleth for pageviews visualization---
     if selected_analysis == 'Total Article Pageviews':
-        
-        pageview_df["Country"] = pageview_df["Country"].str.strip()
-        pageview_df["iso_alpha"] = pageview_df["Country"].apply(name_to_iso3)
-        pageview_df = pageview_df.dropna(subset=["iso_alpha"])
+        grouped_again = pageview_df.groupby("Country")['Total Article Pageviews'].sum()
+        total_pageviews_df = grouped_again.reset_index()
+        total_pageviews_df.columns = ['Country','Total Pageviews']
 
-        fig = px.choropleth(pageview_df, 
+        total_pageviews_df["Country"] = total_pageviews_df["Country"].str.strip()
+        total_pageviews_df["iso_alpha"] = total_pageviews_df["Country"].apply(name_to_iso3)
+        total_pageviews_df = total_pageviews_df.dropna(subset=["iso_alpha"])
+
+        fig = px.choropleth(total_pageviews_df, 
                         locations="iso_alpha", 
                         # locationmode='country names', 
-                        color="Rounded Total Article Pageviews",
+                        color="Total Pageviews",
                         color_continuous_scale="Viridis",
                         width=1000,
                         height=600)
-        pageview_df.sort_values("Rounded Total Article Pageviews",ascending=False,inplace=True)
-        dataframe = pageview_df
+        total_pageviews_df.sort_values("Total Pageviews",ascending=False,inplace=True)
+        dataframe = total_pageviews_df
     else:        
         grouped_again = pageview_df.groupby("Country")['Total Article Pageviews'].mean()
         average_pageviews_df = grouped_again.reset_index()

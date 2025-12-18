@@ -31,8 +31,6 @@ if selected_analysis == 'Number of Feminists':
     origin_information_df = grouped.reset_index()
     origin_information_df.columns = ["Country","Count"]
 
-    st.write(type(origin_information_df['Count'][0]))
-
     ## ---prepare chloropleth for frequency visualization---
     fig = px.choropleth(origin_information_df, 
                         locations="Country", 

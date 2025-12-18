@@ -39,6 +39,7 @@ if selected_analysis == 'Number of Feminists':
     origin_information_df.columns = ["Country","Count"]
     origin_information_df["Country"] = origin_information_df["Country"].str.strip()
 
+    origin_information_df = origin_information_df.dropna(subset=["iso_alpha"])
     origin_information_df["iso_alpha"] = origin_information_df["Country"].apply(name_to_iso3)
  
     ## ---prepare chloropleth for frequency visualization---
@@ -70,6 +71,7 @@ else:
     if selected_analysis == 'Total Article Pageviews':
         
         pageview_df["Country"] = pageview_df["Country"].str.strip()
+        pageview_df = pageview_df.dropna(subset=["iso_alpha"])
         pageview_df["iso_alpha"] = pageview_df["Country"].apply(name_to_iso3)
 
         fig = px.choropleth(pageview_df, 
@@ -88,8 +90,9 @@ else:
         average_pageviews_df = grouped_again.reset_index()
         average_pageviews_df.columns = ['Country','Average Article Pageviews']
         average_pageviews_df['Rounded Average Article Pageviews'] = average_pageviews_df['Average Article Pageviews'].apply(lambda x: round(x))
-        
         average_pageviews_df["Country"] = average_pageviews_df["Country"].str.strip()
+        
+        average_pageviews_df = average_pageviews_df.dropna(subset=["iso_alpha"])
         average_pageviews_df["iso_alpha"] = average_pageviews_df["Country"].apply(name_to_iso3)
         
         fig = px.choropleth(average_pageviews_df, 

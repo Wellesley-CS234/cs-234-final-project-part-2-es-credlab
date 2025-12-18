@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 from pathlib import Path
+import json
 
 st.set_page_config(layout="wide")
 
@@ -16,7 +17,18 @@ This page is brokwn down into three sections - \n
 ROOT = Path(__file__).resolve().parents[1]
 JSON_PATH = ROOT / "data" / "entity_results.jsonl"
 
-info_df = pd.read_json(JSON_PATH,lines=True,dtype=False)
+rows = []
+with open(JSON_PATH, "r", encoding="utf-8") as f:
+    for line in f:
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+
+info_df = pd.DataFrame(rows)
 
 attributes_df = pd.json_normalize(info_df['attributes'])
 info_df = info_df.join(attributes_df)

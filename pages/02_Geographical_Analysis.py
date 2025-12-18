@@ -30,6 +30,7 @@ if selected_analysis == 'Number of Feminists':
     grouped = list_of_feminists.groupby("Country")['q_id'].count()
     origin_information_df = grouped.reset_index()
     origin_information_df.columns = ["Country","Count"]
+    origin_information_df["Country"] = origin_information_df["Country"].str.strip()
 
     ## ---prepare chloropleth for frequency visualization---
     fig = px.choropleth(origin_information_df, 

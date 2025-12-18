@@ -13,8 +13,8 @@ st.write('''This page is dedicated to a geographical analysis of the feminists l
 st.write('''** The dataframe below also shows the top country depending on the selected category.''')
 
 # ---prepare universal data---
-list_of_feminists = pd.read_csv("data\list_of_feminists.csv")
-pageview_data = pd.read_csv("data\cleaned_pageview_data.csv")
+list_of_feminists = pd.read_csv("data/list_of_feminists.csv")
+pageview_data = pd.read_csv("data/cleaned_pageview_data.csv")
 
 # ---create universal widget---
 selected_analysis = st.selectbox('Pick an analysis to get started - ', ['Number of Feminists','Total Article Pageviews','Average Article Pageviews'])

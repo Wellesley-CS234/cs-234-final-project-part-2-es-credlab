@@ -2,6 +2,13 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 from pathlib import Path
+import pycountry
+
+def name_to_iso3(name):
+    try:
+        return pycountry.countries.lookup(name).alpha_3
+    except:
+        return None
 
 st.set_page_config(layout="wide")
 
@@ -32,10 +39,12 @@ if selected_analysis == 'Number of Feminists':
     origin_information_df.columns = ["Country","Count"]
     origin_information_df["Country"] = origin_information_df["Country"].str.strip()
 
+    origin_information_df["iso_alpha"] = origin_information_df["Country"].apply(name_to_iso3)
+ 
     ## ---prepare chloropleth for frequency visualization---
     fig = px.choropleth(origin_information_df, 
-                        locations="Country", 
-                        locationmode='country names', 
+                        locations="iso_alpha", 
+                        # locationmode='country names', 
                         color="Count",
                         color_continuous_scale="Viridis",
                         range_color=[origin_information_df["Count"].min(), origin_information_df["Count"].max()],
@@ -44,9 +53,6 @@ if selected_analysis == 'Number of Feminists':
     origin_information_df.sort_values("Count",ascending=False,inplace=True)
     dataframe = origin_information_df
 
-    st.write(origin_information_df['Country'].unique)
-    st.dataframe(origin_information_df)
-    
 else:
     ## ---prepare data for analysis---
     target_qids = list_of_feminists.q_id
